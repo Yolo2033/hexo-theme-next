@@ -242,6 +242,127 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yolo2033.github.io/2018/06/14/小程序浮点拖拽/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yolo2033">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yolo2033">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/14/小程序浮点拖拽/" itemprop="url">小程序浮点拖拽记录下</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2018-06-14T08:43:07+08:00">
+                2018-06-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="view"><a href="#view" class="headerlink" title="view"></a>view</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;button bindtouchstart=&quot;ballStart&quot; catchtouchmove=&apos;ballMove&apos; bindtouchend=&apos;&apos; style=&apos;top:&#123;&#123;ballTop&#125;&#125;px;left:&#123;&#123;ballLeft&#125;&#125;px;transform:&#123;&#123;transform&#125;&#125;&apos; id=&apos;my-ball&apos; class=&apos;cbtn&apos; open-type=&quot;contact&quot; session-from=&quot;weapp&quot;&gt;</span><br><span class="line">   &lt;image src=&apos;xxx&apos;&gt;&lt;/image&gt;</span><br><span class="line">   &lt;text&gt;客服咨询&lt;/text&gt;</span><br><span class="line"> &lt;/button&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="js"><a href="#js" class="headerlink" title="js"></a>js</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line">onLoad: function () &#123;</span><br><span class="line">    var _this = this;</span><br><span class="line">    wx.getSystemInfo(&#123;</span><br><span class="line">      success: function (res) &#123;</span><br><span class="line">        _this.setData(&#123;</span><br><span class="line">          winHeight: res.windowHeight,</span><br><span class="line">          winWidth: res.windowWidth,</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">      //获取手机屏幕尺寸</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">  onShow: function () &#123;</span><br><span class="line">    let stroagePosition = wx.getStorageSync(&apos;storagePosition&apos;);</span><br><span class="line">    //判断有无缓存位置数据</span><br><span class="line">    if (stroagePosition) &#123;</span><br><span class="line">      this.setData(&#123;</span><br><span class="line">        chanceDistanceX: stroagePosition.storageX,</span><br><span class="line">        chanceDistanceY: stroagePosition.storageY</span><br><span class="line">      &#125;)</span><br><span class="line">      this.fnTranslate(stroagePosition.storageX, stroagePosition.storageY)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">ballStart: function (e) &#123;</span><br><span class="line">    let that = this;</span><br><span class="line">    this.data.posX = e.touches[0].pageX;</span><br><span class="line">    this.data.posY = e.touches[0].pageY;</span><br><span class="line">    if (this.data.transform) &#123;、</span><br><span class="line">    //拖动后再次点击偏移量设置</span><br><span class="line">      this.setData(&#123;</span><br><span class="line">        distanceX: this.data.chanceDistanceX,</span><br><span class="line">        distanceY: this.data.chanceDistanceY</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">    //初始化偏移未0</span><br><span class="line">      this.setData(&#123;</span><br><span class="line">        distanceX: 0,</span><br><span class="line">        distanceY: 0</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    //创建节点选择器</span><br><span class="line">    let query = wx.createSelectorQuery();</span><br><span class="line">    //选择id</span><br><span class="line">    query.select(&apos;#my-ball&apos;).boundingClientRect();</span><br><span class="line">    query.exec(function (res) &#123;</span><br><span class="line">    //得到dom元素信息</span><br><span class="line">      that.data.bound = &#123; left: res[0].left, top: res[0].top, width: res[0].width, height: res[0].height &#125;;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">  ballMove: function (e) &#123;</span><br><span class="line">    // 当移动开始的时候开始记录时间</span><br><span class="line">    let nowX = this.data.nowX = e.touches[0].pageX,</span><br><span class="line">      nowY = this.data.nowY = e.touches[0].pageY,</span><br><span class="line">      winWidth = this.data.winWidth,</span><br><span class="line">      winHeight = this.data.winHeight,</span><br><span class="line">      distanceX = nowX - this.data.posX,</span><br><span class="line">      distanceY = nowY - this.data.posY;</span><br><span class="line">    //此时元素位置</span><br><span class="line">    let absLeft = this.data.bound.left + distanceX,</span><br><span class="line">      absTop = this.data.bound.top + distanceY,</span><br><span class="line">      absRight = absLeft + this.data.bound.width,</span><br><span class="line">      absBottom = absTop + this.data.bound.height;</span><br><span class="line">    // 边缘检测</span><br><span class="line">    if (absLeft &lt; 0) &#123;</span><br><span class="line">      distanceX = distanceX - absLeft;</span><br><span class="line">    &#125;</span><br><span class="line">    if (absTop &lt; 0) &#123;</span><br><span class="line">      distanceY = distanceY - absTop;</span><br><span class="line">    &#125;</span><br><span class="line">    if (absRight &gt; winWidth) &#123;</span><br><span class="line">      distanceX = distanceX - (absRight - winWidth);</span><br><span class="line">    &#125;</span><br><span class="line">    if (absBottom &gt; winHeight) &#123;</span><br><span class="line">      distanceY = distanceY - (absBottom - winHeight);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 元素位置跟随</span><br><span class="line">    var x = this.data.distanceX + distanceX, y = this.data.distanceY + distanceY;</span><br><span class="line">    this.fnTranslate(x, y);</span><br><span class="line">    //缓存位置数据</span><br><span class="line">    this.setData(&#123;</span><br><span class="line">      chanceDistanceX: x,</span><br><span class="line">      chanceDistanceY: y</span><br><span class="line">    &#125;)</span><br><span class="line">    wx.setStorageSync(&apos;storagePosition&apos;, &#123; storageX: x, storageY: y &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  fnTranslate: function (x, y) &#123;//偏移量设置</span><br><span class="line">    x = Math.round(1000 * x) / 1000;</span><br><span class="line">    y = Math.round(1000 * y) / 1000;</span><br><span class="line">    this.setData(&#123;</span><br><span class="line">      transform: &apos;translate3d(&apos; + [x + &apos;px&apos;, y + &apos;px&apos;, 0].join(&apos;,&apos;) + &apos;)&apos;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yolo2033.github.io/2018/06/08/获取小程序节点信息/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -915,7 +1036,7 @@ deploy:
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
