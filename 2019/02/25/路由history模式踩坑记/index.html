@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="###nginx下配置1234nginx下配置location /（A如果是跟目录就是&amp;apos;/&amp;apos;,如果在根目录地下的文件夹这里就是/&amp;apos;你的目录名称&amp;apos;/） &amp;#123;  try_files $uri $uri/ /（同括号上A）index.html;&amp;#125; ###webpack配置1234修改config/index.js下build：&amp;#123;">
+<meta name="description" content="nginx下配置 1、nginx下配置123location /（A如果是跟目录就是&amp;apos;/&amp;apos;,如果在根目录地下的文件夹这里就是/&amp;apos;你的目录名称&amp;apos;/） &amp;#123;  try_files $uri $uri/ /（同括号上A）index.html;&amp;#125;  webpack配置 1、修改config/index.js下123build：&amp;#123;    a">
 <meta property="og:type" content="article">
 <meta property="og:title" content="路由history模式nginx配置踩坑记">
 <meta property="og:url" content="https://yolo2033.github.io/2019/02/25/路由history模式踩坑记/index.html">
 <meta property="og:site_name" content="Yolo2033">
-<meta property="og:description" content="###nginx下配置1234nginx下配置location /（A如果是跟目录就是&amp;apos;/&amp;apos;,如果在根目录地下的文件夹这里就是/&amp;apos;你的目录名称&amp;apos;/） &amp;#123;  try_files $uri $uri/ /（同括号上A）index.html;&amp;#125; ###webpack配置1234修改config/index.js下build：&amp;#123;">
+<meta property="og:description" content="nginx下配置 1、nginx下配置123location /（A如果是跟目录就是&amp;apos;/&amp;apos;,如果在根目录地下的文件夹这里就是/&amp;apos;你的目录名称&amp;apos;/） &amp;#123;  try_files $uri $uri/ /（同括号上A）index.html;&amp;#125;  webpack配置 1、修改config/index.js下123build：&amp;#123;    a">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2019-02-25T01:48:45.909Z">
+<meta property="og:updated_time" content="2019-02-25T01:50:54.888Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="路由history模式nginx配置踩坑记">
-<meta name="twitter:description" content="###nginx下配置1234nginx下配置location /（A如果是跟目录就是&amp;apos;/&amp;apos;,如果在根目录地下的文件夹这里就是/&amp;apos;你的目录名称&amp;apos;/） &amp;#123;  try_files $uri $uri/ /（同括号上A）index.html;&amp;#125; ###webpack配置1234修改config/index.js下build：&amp;#123;">
+<meta name="twitter:description" content="nginx下配置 1、nginx下配置123location /（A如果是跟目录就是&amp;apos;/&amp;apos;,如果在根目录地下的文件夹这里就是/&amp;apos;你的目录名称&amp;apos;/） &amp;#123;  try_files $uri $uri/ /（同括号上A）index.html;&amp;#125;  webpack配置 1、修改config/index.js下123build：&amp;#123;    a">
 
 
 
@@ -309,9 +309,15 @@
       
 
       
-        <p>###nginx下配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nginx下配置</span><br><span class="line">location /（A如果是跟目录就是&apos;/&apos;,如果在根目录地下的文件夹这里就是/&apos;你的目录名称&apos;/） &#123;</span><br><span class="line">  try_files $uri $uri/ /（同括号上A）index.html;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>###webpack配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">修改config/index.js下</span><br><span class="line">build：&#123;</span><br><span class="line">    assetsPublicPath: &apos;/test-admin/（同括号上A）&apos;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>###路由配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">new Router时候添加base参数，另外同括号上A</span><br><span class="line">export default new Router(&#123;</span><br><span class="line">  mode: &apos;history&apos;, // 后端支持可开</span><br><span class="line">  base: &apos;/test-admin/&apos;,</span><br><span class="line">  scrollBehavior: () =&gt; (&#123;</span><br><span class="line">    y: 0</span><br><span class="line">  &#125;),</span><br><span class="line">  routes: constantRouterMap</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+        <h3 id="nginx下配置"><a href="#nginx下配置" class="headerlink" title="nginx下配置"></a>nginx下配置</h3><blockquote>
+<p>1、nginx下配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location /（A如果是跟目录就是&apos;/&apos;,如果在根目录地下的文件夹这里就是/&apos;你的目录名称&apos;/） &#123;</span><br><span class="line">  try_files $uri $uri/ /（同括号上A）index.html;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="webpack配置"><a href="#webpack配置" class="headerlink" title="webpack配置"></a>webpack配置</h3><blockquote>
+<p>1、修改config/index.js下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">build：&#123;</span><br><span class="line">    assetsPublicPath: &apos;/test-admin/（同括号上A）&apos;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="路由配置"><a href="#路由配置" class="headerlink" title="路由配置"></a>路由配置</h3><blockquote>
+<p>1、new Router时候添加base参数，另外同括号上A<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">export default new Router(&#123;</span><br><span class="line">  mode: &apos;history&apos;, // 后端支持可开</span><br><span class="line">  base: &apos;/test-admin/&apos;,</span><br><span class="line">  scrollBehavior: () =&gt; (&#123;</span><br><span class="line">    y: 0</span><br><span class="line">  &#125;),</span><br><span class="line">  routes: constantRouterMap</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+</blockquote>
 
       
     </div>
@@ -396,8 +402,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概覽
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -439,6 +454,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#nginx下配置"><span class="nav-number">1.</span> <span class="nav-text">nginx下配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webpack配置"><span class="nav-number">2.</span> <span class="nav-text">webpack配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路由配置"><span class="nav-number">3.</span> <span class="nav-text">路由配置</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
