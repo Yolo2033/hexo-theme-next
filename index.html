@@ -242,6 +242,140 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yolo2033.github.io/2019/02/26/webpack多环境配置踩坑记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yolo2033">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yolo2033">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/26/webpack多环境配置踩坑记/" itemprop="url">webpack多环境配置踩坑记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2019-02-26T16:17:46+08:00">
+                2019-02-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>1  /config/index.js (在此配置文件中添加需要增加的环境配置)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">build: &#123;</span><br><span class="line">    // Template for index.html</span><br><span class="line">    index: path.resolve(__dirname, `../dist/$&#123;process.env.ENV_CONFIG&#125;/index.html`),</span><br><span class="line">    sitEnv: require(&apos;./sit.env&apos;), // 添加测试环境</span><br><span class="line">    preProdEnv: require(&apos;./preProd.env&apos;), // 添加沙箱测试环境</span><br><span class="line">    prodEnv: require(&apos;./prod.env&apos;), // 添加生产环境</span><br><span class="line">    // Paths</span><br><span class="line">    assetsRoot: path.resolve(__dirname, `../dist/$&#123;process.env.ENV_CONFIG&#125;`),</span><br><span class="line">    assetsSubDirectory: &apos;static&apos;,</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>2  webpack.prod.conf.js<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const env = config.build[process.env.ENV_CONFIG+&apos;Env&apos;]</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>3  package.json<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;build:sit&quot;: &quot;cross-env NODE_ENV=production ENV_CONFIG=sit PUBLIC_PATH=/test-admin/ node build/build.js&quot;,</span><br><span class="line">    &quot;build:prod&quot;: &quot;cross-env NODE_ENV=production ENV_CONFIG=prod PUBLIC_PATH=/xn-admin/ node build/build.js&quot;,</span><br><span class="line">    (做动态配置的时候需要注意此参数 PUBLIC_PATH=/这里是我的目录/，跟后面对应的环境配置文件都需要赋相同的值，为什么还在寻找答案)</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line">这里有几点需要注意：</span><br><span class="line">1.cross-env 是为了兼容各个系统之间差别，需要安装这个包npm install cross-env --save-dev</span><br><span class="line">2.NODE_ENV 和 ENV_CONFIG 与环境配置文件中的大小写一定要一致，不然在 linux 系统服务器下面会出现问题，前辈文章记录末尾附链接。</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="添加相应的环境文件"><a href="#添加相应的环境文件" class="headerlink" title="添加相应的环境文件"></a>添加相应的环境文件</h3><blockquote>
+<p>1、sit.env.js、prod.env.js 等<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">    NODE_ENV: &apos;&quot;production&quot;&apos;,</span><br><span class="line">    ENV_CONFIG: &apos;&quot;sit&quot;&apos;,</span><br><span class="line">    BASE_URL: &apos;&quot;https://xxxx.xxxx.com&quot;&apos;,</span><br><span class="line">    HOST:&apos;&quot;https://xxx.xxx.com&quot;&apos;,</span><br><span class="line">    CONFIG_TEXT: &apos;&quot;打包测试线上&quot;&apos;,</span><br><span class="line">    PUBLIC_PATH: &apos;&quot;/xxx-xxx/&quot;&apos;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="启动项目"><a href="#启动项目" class="headerlink" title="启动项目"></a>启动项目</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#开发调试</span><br><span class="line">npm run dev</span><br><span class="line">#测试环境构建</span><br><span class="line">npm run build:sit</span><br><span class="line">#生产环境构建</span><br><span class="line">npm run build:prod</span><br></pre></td></tr></table></figure>
+<h3 id="注"><a href="#注" class="headerlink" title="注"></a>注</h3><blockquote>
+<p>1、在node环境下，所写的环境配置文件中的字段都是可以取到值得比如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">process.env.BASE_URL</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>参考地址：<a href="http://wangyuanweb.top/2018/05/14/%E5%9F%BA%E4%BA%8Evue-cli%E7%9A%84webpack%E5%A4%9A%E7%8E%AF%E5%A2%83%E6%89%93%E5%8C%85%E9%85%8D%E7%BD%AE/" target="_blank" rel="noopener">http://wangyuanweb.top/2018/05/14/%E5%9F%BA%E4%BA%8Evue-cli%E7%9A%84webpack%E5%A4%9A%E7%8E%AF%E5%A2%83%E6%89%93%E5%8C%85%E9%85%8D%E7%BD%AE/</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yolo2033.github.io/2019/02/25/路由history模式踩坑记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1284,7 +1418,7 @@ deploy:
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
